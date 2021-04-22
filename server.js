@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // setup routes
-app.use("/users", require("./routes/userRoutes"));
+// app.use("/users", require("./routes/userRoutes"));
 
 // setup mongoose
 mongoose.connect(
@@ -29,9 +29,6 @@ mongoose.connect(
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-// setup routes
-app.use("/users", require("./routes/userRoutes"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));

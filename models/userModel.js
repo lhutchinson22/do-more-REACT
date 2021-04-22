@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [/.+@.+\..+/, "Enter a valid email"],
   },
-  password: { type: String, required: true, minLength: 5 },
+  password: { type: String, required: true, minLength: 8 },
   displayName: { type: String, required: true },
 });
 
