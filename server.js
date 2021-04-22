@@ -14,6 +14,7 @@ if (process.env.NODE_ENV == "production") {
 }
 
 //custom routes
+app.use("/blog", require("./routes/blog-routes"));
 
 // heroku build
 app.get("*", (req, res) => {
