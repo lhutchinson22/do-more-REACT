@@ -1,22 +1,38 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 5000;
 const path = require("path");
-
-require("./models/connection");
+const PORT = process.env.PORT || 5000;
 
 // setup express
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-if (process.env.NODE_ENV == "production") {
+// setup routes
+app.use("/users", require("./routes/userRoutes"));
+
+// setup mongoose
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/jwt-auth",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("MongoDB connection established");
+  }
+);
+
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-//custom routes
-app.use("/blog", require("./routes/blog-routes"));
+// setup routes
+app.use("/users", require("./routes/userRoutes"));
 
-// heroku build
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
