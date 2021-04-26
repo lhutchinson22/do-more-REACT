@@ -9,11 +9,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // setup routes
-// app.use("/users", require("./routes/userRoutes"));
+app.use("/users", require("./routes/userRoutes"));
 
-// setup mongoose
+// setup mongoose and create database name
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/jwt-auth",
+  process.env.MONGODB_URI || "mongodb://localhost/practice-auth",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
