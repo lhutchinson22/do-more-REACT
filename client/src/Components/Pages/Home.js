@@ -8,6 +8,7 @@ function Home() {
   return (
     <>
       <HeroSection />
+      <p>time to login</p>
       <Cards />
       <Footer />
     </>
