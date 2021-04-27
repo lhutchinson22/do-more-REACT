@@ -8,7 +8,20 @@ function Home() {
   return (
     <>
       <HeroSection />
-      <p>time to login</p>
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log("hi");
+          }}
+        >
+          <label>Email</label>
+          <input type="text" name="email" />
+          <label>Password</label>
+          <input type="text" name="password" />
+          <input type="submit" />
+        </form>
+      </div>
       <Cards />
       <Footer />
     </>

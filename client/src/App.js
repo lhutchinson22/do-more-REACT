@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Components/Pages/Home";
@@ -7,6 +8,18 @@ import Products from "./Components/Pages/Products";
 import Register from "./Components/Pages/Register";
 
 function App() {
+  const checkedLoggedIn = () => {
+    let token = localStorage.getItem("auth-token");
+
+    if (token === null) {
+      localStorage.setItem("auth-token", "");
+    }
+  };
+
+  useEffect(() => {
+    checkedLoggedIn();
+  }, []);
+
   return (
     <div className="App">
       <Router>
