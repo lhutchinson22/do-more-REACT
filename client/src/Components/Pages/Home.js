@@ -25,13 +25,23 @@ function Home() {
   return (
     <>
       <HeroSection />
-      <div>
+      <div className="loginDiv">
         <form onSubmit={submitLoginForm}>
-          <label>Email</label>
-          <input onChange={onChange} type="text" name="email" />
-          <label>Password</label>
-          <input onChange={onChange} type="text" name="password" />
-          <input type="submit" />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="email"
+            placeholder="EMAIL"
+          />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="password"
+            placeholder="PASSWORD"
+          />
+          <input className="btn btn--primary btn--large" type="submit" />
         </form>
       </div>
       <Cards />

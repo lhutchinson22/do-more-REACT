@@ -23,17 +23,37 @@ export default function Register() {
   return (
     <>
       <h1 className="sign-up">SIGN UP</h1>
-      <div>
+      <div className="registerDiv">
         <form onSubmit={submit}>
-          <label>Email</label>
-          <input onChange={onChange} type="text" name="email" />
-          <label>Password</label>
-          <input onChange={onChange} type="text" name="password" />
-          <label>Password Check</label>
-          <input onChange={onChange} type="text" name="passwordCheck" />
-          <label>Display Name</label>
-          <input onChange={onChange} type="text" name="displayName" />
-          <input type="submit" />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="email"
+            placeholder="EMAIL"
+          />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="password"
+            placeholder="PASSWORD"
+          />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="passwordCheck"
+            placeholder="PASSWORD CHECK"
+          />
+          <input
+            className="input-form"
+            onChange={onChange}
+            type="text"
+            name="displayName"
+            placeholder="DISPLAY NAME"
+          />
+          <input className="btn btn--primary btn--large" type="submit" />
         </form>
       </div>
       <Footer />
