@@ -6,8 +6,14 @@ import Home from "./Components/Pages/Home";
 import Services from "./Components/Pages/Services";
 import Products from "./Components/Pages/Products";
 import Register from "./Components/Pages/Register";
+import UserContext from "./Components/Context/UserContext";
 
 function App() {
+  const [userData, setUserData] = useState({
+    user: undefined,
+    token: undefined,
+  });
+
   const checkedLoggedIn = () => {
     let token = localStorage.getItem("auth-token");
 
@@ -24,12 +30,14 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/services" component={Services} />
-          <Route path="/products" component={Products} />
-          <Route path="/register" component={Register} />
-        </Switch>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/services" component={Services} />
+            <Route path="/products" component={Products} />
+            <Route path="/register" component={Register} />
+          </Switch>
+        </UserContext.Provider>
       </Router>
     </div>
   );
