@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../../App.css";
 import Cards from "../Cards";
 import Footer from "../Footer";
 import HeroSection from "../HeroSection";
 import axios from "axios";
+import UserContext from "../Context/UserContext";
 
 function Home() {
   const [form, setForm] = useState();
+  const { userData, setUserData } = useContext(UserContext);
+  const history = useHistory();
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,12 +19,25 @@ function Home() {
   const submitLoginForm = async (e) => {
     e.preventDefault();
     try {
-      const loginRes = await axios.post("/users/login", form);
-      console.log(loginRes);
+      const { data } = await axios.post("/users/login", form);
+
+      setUserData({
+        token: data.token,
+        user: data.user,
+      });
+
+      //when you login it pushes to services page
+      localStorage.setItem("auth-token", data.token);
+      history.push("/services");
     } catch (err) {
       console.log(err.response);
     }
   };
+
+  useEffect(() => {
+    //if the user is signed in, they get redirected to the services page no matter what
+    if (userData.user) history.push("/services");
+  }, [userData.user, history]);
 
   return (
     <>

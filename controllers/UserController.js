@@ -81,4 +81,16 @@ module.exports = {
       res.status(500).json({ error: err.message });
     }
   },
+
+  getUser: async (req, res) => {
+    try {
+      const user = await User.findById(req.user);
+      res.json({
+        displayName: user.displayName,
+        id: user._id,
+      });
+    } catch (err) {
+      res.send(err.response);
+    }
+  },
 };

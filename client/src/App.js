@@ -7,6 +7,7 @@ import Services from "./Components/Pages/Services";
 import Products from "./Components/Pages/Products";
 import Register from "./Components/Pages/Register";
 import UserContext from "./Components/Context/UserContext";
+import axios from "axios";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -14,12 +15,27 @@ function App() {
     token: undefined,
   });
 
-  const checkedLoggedIn = () => {
+  const checkedLoggedIn = async () => {
     let token = localStorage.getItem("auth-token");
 
     if (token === null) {
       localStorage.setItem("auth-token", "");
+    } else {
+      const userRes = await axios.get("/users", {
+        headers: { "x-auth-token": token },
+      });
+
+      console.log("User:", userRes);
+      setUserData({
+        token,
+        user: userRes.data,
+      });
     }
+  };
+
+  const logout = () => {
+    setUserData({ token: undefined, user: undefined });
+    localStorage.setItem("auth-token", "");
   };
 
   useEffect(() => {
@@ -33,7 +49,9 @@ function App() {
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/services" component={Services} />
+            <Route path="/services">
+              <Services logout={logout} />
+            </Route>
             <Route path="/products" component={Products} />
             <Route path="/register" component={Register} />
           </Switch>

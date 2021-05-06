@@ -3,8 +3,9 @@ import { useHistory } from "react-router-dom";
 import "../../App.css";
 import Footer from "../Footer";
 import UserContext from "../Context/UserContext";
+import { Button } from "../Button";
 
-export default function Services() {
+export default function Services(props) {
   const { userData } = useContext(UserContext);
   const history = useHistory();
 
@@ -15,6 +16,14 @@ export default function Services() {
   return (
     <>
       <h1 className="services">SERVICES</h1>
+      <Button
+        onClick={props.logout}
+        className="btns"
+        buttonStyle="btn--primary"
+        buttonSize="btn--large"
+      >
+        LOGOUT <i className="fa fa-arrow-right" />
+      </Button>
       <Footer />
     </>
   );
