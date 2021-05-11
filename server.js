@@ -10,6 +10,7 @@ app.use(express.json());
 
 // setup routes
 app.use("/users", require("./routes/userRoutes"));
+app.use("/posts", require("./routes/postRoutes"));
 
 // setup mongoose and create database name
 mongoose.connect(

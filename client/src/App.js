@@ -1,13 +1,13 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar";
 import Home from "./Components/Pages/Home";
 import Services from "./Components/Pages/Services";
 import Products from "./Components/Pages/Products";
 import Register from "./Components/Pages/Register";
-import UserContext from "./Components/Context/UserContext";
 import axios from "axios";
+import UserContext from "./Components/Context/UserContext";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -21,15 +21,17 @@ function App() {
     if (token === null) {
       localStorage.setItem("auth-token", "");
     } else {
-      const userRes = await axios.get("/users", {
-        headers: { "x-auth-token": token },
-      });
-
-      console.log("User:", userRes);
-      setUserData({
-        token,
-        user: userRes.data,
-      });
+      try {
+        const userRes = await axios.get("/users", {
+          headers: { "x-auth-token": token },
+        });
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      } catch (err) {
+        console.log("User must login");
+      }
     }
   };
 

@@ -16,6 +16,10 @@ export default function Services(props) {
   return (
     <>
       <h1 className="services">SERVICES</h1>
+      <h3 style={{ textAlign: "center" }}>
+        {" "}
+        Welcome {userData.user?.displayName}
+      </h3>
       <Button
         onClick={props.logout}
         className="btns"
