@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Pages/Home";
-import Services from "./Components/Pages/Services";
+import About from "./Components/Pages/About";
 import Products from "./Components/Pages/Products";
 import Register from "./Components/Pages/Register";
 import axios from "axios";
@@ -12,7 +12,7 @@ import UserContext from "./Components/Context/UserContext";
 function App() {
   const [userData, setUserData] = useState({
     user: undefined,
-    token: undefined,
+    token: undefined
   });
 
   const checkedLoggedIn = async () => {
@@ -23,11 +23,11 @@ function App() {
     } else {
       try {
         const userRes = await axios.get("/users", {
-          headers: { "x-auth-token": token },
+          headers: { "x-auth-token": token }
         });
         setUserData({
           token,
-          user: userRes.data,
+          user: userRes.data
         });
       } catch (err) {
         console.log("User must login");
@@ -51,8 +51,8 @@ function App() {
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/services">
-              <Services logout={logout} />
+            <Route path="/about">
+              <About logout={logout} />
             </Route>
             <Route path="/products" component={Products} />
             <Route path="/register" component={Register} />

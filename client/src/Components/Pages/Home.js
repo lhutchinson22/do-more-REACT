@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "../../App.css";
-import Cards from "../Cards";
+// import Cards from "../Cards";
 import Footer from "../Footer";
 import HeroSection from "../HeroSection";
 import axios from "axios";
@@ -12,18 +12,18 @@ function Home() {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const onChange = (e) => {
+  const onChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submitLoginForm = async (e) => {
+  const submitLoginForm = async e => {
     e.preventDefault();
     try {
       const { data } = await axios.post("/users/login", form);
 
       setUserData({
         token: data.token,
-        user: data.user,
+        user: data.user
       });
 
       //when you login it pushes to services page
@@ -42,7 +42,7 @@ function Home() {
   return (
     <>
       <HeroSection />
-      <div className="loginDiv">
+      {/* <div className="loginDiv">
         <form onSubmit={submitLoginForm}>
           <input
             className="input-form"
@@ -60,8 +60,8 @@ function Home() {
           />
           <input className="btn btn--primary btn--large" type="submit" />
         </form>
-      </div>
-      <Cards />
+      </div> */}
+      {/* <Cards /> */}
       <Footer />
     </>
   );

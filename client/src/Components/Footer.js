@@ -8,10 +8,7 @@ function Footer() {
     <div className="footer-container">
       <section className="footer-subscription">
         <p className="footer-subscription-heading">
-          Join the Adventure newsletter to receive our best vacation deals
-        </p>
-        <p className="footer-subscription-text">
-          You can unsubscribe at any time.
+          Want to be the first to know about events?
         </p>
         <div className="input-areas">
           <form>
@@ -22,6 +19,9 @@ function Footer() {
               placeholder="Your Email"
             />
             <Button buttonStyle="btn--outline">Subscribe</Button>
+            <p className="footer-subscription-text">
+              You can unsubscribe at any time.
+            </p>
           </form>
         </div>
       </section>
@@ -64,11 +64,11 @@ function Footer() {
         <div className="social-media-wrap">
           <div className="footer-logo">
             <Link to="/" className="social-logo">
-              LIVE MORE
+              THE MUSEION
               <i className="fab fa-typo3" />
             </Link>
           </div>
-          <small className="website-rights">LAUREN BLAKE © 2021</small>
+          <small className="website-rights">THE MUSEION © 2021</small>
           <div className="social-icons">
             <Link
               className="social-icon-link facebook"

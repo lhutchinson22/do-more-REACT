@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 // import { Button } from "./Button";
 import "./HeroSection.css";
+import img1 from "../images/door1.png";
 
 const HeroSection = () => {
   return (
@@ -10,6 +11,17 @@ const HeroSection = () => {
       <h1>Choose a door.</h1>
       <p>what are you waiting for?</p>
       <div className="hero-btns">
+        <div className="row">
+          <div className="door-images">
+            <img
+              src={img1}
+              text="Travel through the Islands of Bali in a Private Cruise"
+              label="Luxury"
+              path="/about"
+            />
+          </div>
+        </div>
+
         {/* <Button
           className="btns"
           buttonStyle="btn--outline"
